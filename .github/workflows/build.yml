@@ -25,20 +25,20 @@ jobs:
 
       - name: Download Gradle Wrapper JAR
         run: |
-          mkdir -p gradle/wrapper
-          curl -fL "https://github.com/gradle/gradle/raw/v8.2.0/gradle/wrapper/gradle-wrapper.jar" \
+          mkdir -p gradle1/wrapper
+          curl -fL "https://github.com/gradle/gradle/raw/v8.2.0/gradle1/wrapper/gradle-wrapper.jar" \
             -o gradle/wrapper/gradle-wrapper.jar
           echo "Wrapper JAR: $(ls -lh gradle/wrapper/gradle-wrapper.jar)"
 
       - name: Grant gradlew permission
         run: chmod +x gradlew
 
-      - name: Cache Gradle
+      - name: Cache Gradle1
         uses: actions/cache@v4
         with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: ${{ runner.os }}-gradle-
+          path: ~/.gradle1/caches
+          key: ${{ runner.os }}-gradle1-${{ hashFiles('**/*.gradle1*') }}
+          restore-keys: ${{ runner.os }}-gradle1-
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug --stacktrace
